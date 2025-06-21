@@ -8,16 +8,9 @@ const connection = mysql.createConnection({
   database: process.env.DB_NAME
 });
 
-connection.query(`
-  CREATE TABLE IF NOT EXISTS schools (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    address VARCHAR(255) NOT NULL,
-    latitude FLOAT NOT NULL,
-    longitude FLOAT NOT NULL
-  )
-`, (err, results) => {
+connection.connect((err) => {
   if (err) throw err;
-  console.log("Table created");
+  console.log("MySQL connected...");
 });
+
 module.exports = connection;
